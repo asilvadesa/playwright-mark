@@ -6,15 +6,25 @@ test.describe('Tasks feature', () => {
         await page.fill('#newTask', 'Ler um livro de TypeScript');
     });
 
-  test('find element by select css', async ({ page }) => {
+    test('find element by select css', async ({ page }) => {
         await page.goto('http://localhost:8080/');;
         await page.fill('input[placeholder="Add a new Task"]', 'Ler um livro de TypeScript');
     });
 
-      test('find element by regular expression', async ({ page }) => {
+    test('find element by regular expression', async ({ page }) => {
         await page.goto('http://localhost:8080/');
         await page.fill('input[class*=InputNewTask]', 'Ler um livro de TypeScript');
     });
 
+    test('find element by xpath', async ({ page }) => {
+        await page.goto('http://localhost:8080/');
+        await page.fill('input[class*=InputNewTask]', 'Ler um livro de TypeScript');
+        await page.click('xpath=//button[contains(text(), "Create")]');
+    });
 
+    test('find element by playwright xpath', async ({ page }) => {
+        await page.goto('http://localhost:8080/');
+        await page.fill('input[class*=InputNewTask]', 'Ler um livro de TypeScript(TS)');
+        await page.click('css=button >> text=Create');
+    });
 });
